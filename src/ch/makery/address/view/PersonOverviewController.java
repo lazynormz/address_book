@@ -2,12 +2,11 @@ package ch.makery.address.view;
 
 import ch.makery.address.util.DateUtil;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import ch.makery.address.MainApp;
 import ch.makery.address.model.Person;
+
+import java.util.Optional;
 
 public class PersonOverviewController {
     @FXML
@@ -106,9 +105,16 @@ public class PersonOverviewController {
     private void handleDeletePerson() {
         int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-            personTable.getItems().remove(selectedIndex);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("Confirmation of deletion");
+            alert.setHeaderText("Confirmation");
+            alert.setContentText("You are about to delete an entry. Are you sure you want to continue the action?");
+
+            Optional<ButtonType> res = alert.showAndWait();
+            if(res.get() == ButtonType.OK)
+                personTable.getItems().remove(selectedIndex);
         } else {
-            // Nothing selected.
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(mainApp.getPrimaryStage());
             alert.setTitle("No Selection");
