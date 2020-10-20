@@ -9,9 +9,6 @@ import ch.makery.address.model.PersonListWrapper;
 import ch.makery.address.view.PersonEditDialogController;
 import ch.makery.address.view.PersonOverviewController;
 import ch.makery.address.view.RootLayoutController;
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.Marshaller;
-import jakarta.xml.bind.Unmarshaller;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +19,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
 public class MainApp extends Application {
 
@@ -211,7 +212,7 @@ public class MainApp extends Application {
             Unmarshaller um = context.createUnmarshaller();
 
             // Reading XML from the file and unmarshalling.
-            PersonListWrapper wrapper = (PersonListWrapper) ((Unmarshaller) um).unmarshal(file);
+            PersonListWrapper wrapper = (PersonListWrapper) um.unmarshal(file);
 
             personData.clear();
             personData.addAll(wrapper.getPersons());

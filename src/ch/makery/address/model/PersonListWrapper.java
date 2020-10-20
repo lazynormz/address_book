@@ -1,9 +1,8 @@
 package ch.makery.address.model;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
-
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
 
 /**
  * Helper class to wrap a list of persons. This is used for saving the

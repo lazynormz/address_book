@@ -1,9 +1,9 @@
 package ch.makery.address.model;
 
 import ch.makery.address.util.LocalDateAdapter;
-import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javafx.beans.property.*;
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 
 public class Person {
