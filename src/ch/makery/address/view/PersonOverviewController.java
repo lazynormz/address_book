@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import ch.makery.address.MainApp;
 import ch.makery.address.model.Person;
 
+import java.util.Formatter;
 import java.util.Optional;
 
 public class PersonOverviewController {
@@ -109,7 +110,11 @@ public class PersonOverviewController {
             alert.initOwner(mainApp.getPrimaryStage());
             alert.setTitle("Confirmation of deletion");
             alert.setHeaderText("Confirmation");
-            alert.setContentText("You are about to delete an entry. Are you sure you want to continue the action?");
+
+            Formatter fmt = new Formatter(new StringBuilder());
+            String name = fmt.format("%s - %s",personTable.getItems().get(selectedIndex).getFirstName(), personTable.getItems().get(selectedIndex).getLastName()).toString();
+
+            alert.setContentText("You are about to delete the entry <" + name + ">. Are you sure you want to continue the action? (Action cannot be undone)");
 
             Optional<ButtonType> res = alert.showAndWait();
             if(res.get() == ButtonType.OK)
